@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Product</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f8f9fa;
+      padding: 40px;
+    }
+
+    .form-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #8b0000;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .param-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .param-row input {
+      flex: 1;
+    }
+
+    .add-btn {
+      background-color: #8b0000;
+      color: white;
+      padding: 7px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .add-btn:hover {
+      background-color: #a00000;
+    }
+
+    .submit-btn {
+      background-color: #8b0000;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    .submit-btn:hover {
+      background-color: #a40000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Create New Product</h2>
+    <form action="/admin/products" method="POST" enctype="multipart/form-data">
+
+      <label>Product Name</label>
+      <input type="text" name="productName" required />
+
+      <label>Model Number</label>
+      <input type="text" name="productModelNumber" required />
+
+      <label>Short Description</label>
+      <input type="text" name="shortDescription" />
+
+      <label>Full Description</label>
+      <textarea name="productDescription" rows="5" required></textarea>
+
+      <label>Product Features (comma-separated)</label>
+      <input type="text" name="productFeatures" placeholder="Stainless steel, Easy to clean, Compact" />
+
+      <label>Applications (comma-separated)</label>
+      <input type="text" name="productApplications" placeholder="Food, Pharma, Packaging" />
+
+      <div class="mb-3">
+        <label>Main Category</label>
+        <select id="mainCategory" name="mainCategory" class="form-control" required onchange="filterSubcategories()">
+          <option value="">-- Select Main Category --</option>
+          <% mainCategories.forEach(cat => { %>
+            <option value="<%= cat._id %>"><%= cat.name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Subcategory (optional)</label>
+        <select id="subCategory" name="subCategory" class="form-control">
+          <option value="">-- Select Subcategory --</option>
+          <% subcategories.forEach(sub => { %>
+            <option data-parent="<%= sub.parentCategory %>" value="<%= sub._id %>"><%= sub.name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+
+      <label>Technical Parameters</label>
+      <div id="param-container">
+        <div class="param-row">
+          <input type="text" name="productParameters[0][key]" placeholder="Key" />
+          <input type="text" name="productParameters[0][value]" placeholder="Value" />
+        </div>
+      </div>
+      <button type="button" class="add-btn" onclick="addParam()">+ Add Parameter</button>
+
+      <label>Video URL (YouTube / Vimeo)</label>
+      <input type="text" name="videoURL" placeholder="https://youtube.com/..." />
+
+      <label>Specification PDF</label>
+      <input type="file" name="specPDF" accept="application/pdf" />
+
+      <label>Cover Image</label>
+      <input type="file" name="coverImage" accept="image/*" required />
+
+      <label>Product Images (Multiple)</label>
+      <input type="file" name="productImages" accept="image/*" multiple />
+
+      <button type="submit" class="submit-btn">Submit Product</button>
+    </form>
+  </div>
+
+  <script>
+    let paramIndex = 1;
+    function addParam() {
+      const container = document.getElementById('param-container');
+      const row = document.createElement('div');
+      row.className = 'param-row';
+      row.innerHTML = `
+        <input type="text" name="productParameters[${paramIndex}][key]" placeholder="Key" />
+        <input type="text" name="productParameters[${paramIndex}][value]" placeholder="Value" />
+      `;
+      container.appendChild(row);
+      paramIndex++;
+    }
+  </script>
+  <script>
+  function filterSubcategories() {
+    const selectedMainId = document.getElementById("mainCategory").value;
+    const subCategorySelect = document.getElementById("subCategory");
+    const options = subCategorySelect.querySelectorAll("option");
+
+    options.forEach(opt => {
+      if (!opt.value) return; // Skip placeholder
+      if (opt.getAttribute("data-parent") === selectedMainId) {
+        opt.style.display = "block";
+      } else {
+        opt.style.display = "none";
+      }
+    });
+
+    subCategorySelect.value = "";
+  }
+</script>
+
+
+</body>
+</html>

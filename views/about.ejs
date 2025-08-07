@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us | Aspire Packaging</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fdfdfd;
+      color: #333;
+    }
+
+    header {
+      background-color: #8b0000;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      color: #8b0000;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .section p {
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      color: #8b0000;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    footer {
+      background: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>About Aspire Packaging</h1>
+  </header>
+
+  <section class="section">
+    <h2>Who We Are</h2>
+    <p>
+      Aspire Packaging is a leading manufacturer and distributor of packaging machinery, delivering innovation and quality to customers across industries. With a strong foundation of technical expertise and over a decade of industry experience, we are committed to helping businesses optimize their packaging processes.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Our Trusted Partners</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Partner 1">
+        <h3>Hualian Machinery</h3>
+        <p>Our global OEM partner for coding, sealing, and strapping machines.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Partner 2">
+        <h3>PAC Technologies</h3>
+        <p>Collaborating on sustainable packaging solutions and automation systems.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Partner 3">
+        <h3>Flexo Systems</h3>
+        <p>Strategic partner for flexographic printing and labeling machinery.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Our Core Team</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/100x100.png?text=CEO" alt="CEO">
+        <h3>Rajesh Verma</h3>
+        <p>Founder & CEO</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100x100.png?text=CTO" alt="CTO">
+        <h3>Sneha Mehta</h3>
+        <p>Chief Technology Officer</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100x100.png?text=COO" alt="COO">
+        <h3>Abhishek Kumar</h3>
+        <p>Operations Head</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100x100.png?text=Sales" alt="Sales">
+        <h3>Ritika Shah</h3>
+        <p>Sales & Partnerships</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; <%= new Date().getFullYear() %> Aspire Packaging. All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Service & Support | Aspire Packaging</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin: 0; background: #fdfdfd; color: #333; }
+    header {
+      background: #8b0000;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 2.5rem; }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      color: #8b0000;
+      margin-bottom: 1rem;
+    }
+
+    .support-cards {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+    }
+
+    .card h3 { color: #8b0000; margin-bottom: 0.5rem; }
+    .card p { color: #555; font-size: 0.95rem; }
+
+    footer {
+      background: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Service & Support</h1>
+  </header>
+
+  <section class="section">
+    <h2>Customer First, Always</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+      At Aspire Packaging, our commitment doesn't end at the sale. Our nationwide service team ensures that your machines operate smoothly, efficiently, and reliably.
+    </p>
+
+    <div class="support-cards">
+      <div class="card">
+        <h3>Installation Support</h3>
+        <p>Get expert assistance with on-site setup and calibration of your machines.</p>
+      </div>
+      <div class="card">
+        <h3>Maintenance</h3>
+        <p>Scheduled preventive maintenance packages to extend the life of your equipment.</p>
+      </div>
+      <div class="card">
+        <h3>Spare Parts</h3>
+        <p>We ensure fast and reliable delivery of original spare parts across India.</p>
+      </div>
+      <div class="card">
+        <h3>Remote Assistance</h3>
+        <p>Get technical troubleshooting and virtual support anytime, anywhere.</p>
+      </div>
+      <div class="card">
+        <h3>Warranty Claims</h3>
+        <p>Easy claim process with genuine support and minimum downtime.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; <%= new Date().getFullYear() %> Aspire Packaging. All rights reserved.
+  </footer>
+
+</body>
+</html>

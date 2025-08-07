@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Products - Admin</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #8b0000;
+      margin-bottom: 2rem;
+    }
+
+    .add-btn {
+      display: inline-block;
+      background-color: #8b0000;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-btn:hover {
+      background-color: #a40000;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    td img {
+      max-width: 80px;
+      border-radius: 4px;
+    }
+
+    .actions a {
+      margin: 0 4px;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .edit-btn {
+      background-color: #007bff;
+    }
+    .edit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+    }
+    .delete-btn:hover {
+      background-color: #a71d2a;
+    }
+
+    .view-btn {
+      background-color: #28a745;
+    }
+    .view-btn:hover {
+      background-color: #1e7e34;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th {
+        text-align: left;
+      }
+
+      td {
+        text-align: left;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 16px;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+
+      td img {
+        max-width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📦 All Products</h1>
+  <a href="/admin/products/new" class="add-btn">➕ Add Product</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(p => { %>
+        <tr>
+          <td data-label="Cover"><img src="<%= p.coverImage %>" alt="cover"></td>
+          <td data-label="Name"><%= p.productName %></td>
+          <td data-label="Model"><%= p.productModelNumber %></td>
+          <td data-label="Category"><%= p.categoryId.name %></td>
+          <td data-label="Actions" class="actions">
+            <a href="/admin/products/edit/<%= p._id %>" class="edit-btn">✏️ Edit</a>
+            <a href="/admin/products/delete/<%= p._id %>" class="delete-btn" onclick="return confirm('Delete this product?')">🗑️ Delete</a>
+            <a href="/product/<%= p.slug %>" target="_blank" class="view-btn">👁 View</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+</body>
+</html>

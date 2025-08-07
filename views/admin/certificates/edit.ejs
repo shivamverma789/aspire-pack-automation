@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Certificate</title>
+</head>
+<body>
+  <h1 style="text-align:center;">Edit Certificate</h1>
+  <form action="/admin/certificates/edit/<%= certificate._id %>" method="POST" enctype="multipart/form-data" style="width: 400px; margin: auto;">
+    <label>Name:</label><br>
+    <input type="text" name="name" value="<%= certificate.name %>" required><br><br>
+
+    <label>Current File:</label><br>
+    <a href="<%= certificate.certificate %>" target="_blank">View</a><br><br>
+
+    <label>Upload New File (optional):</label><br>
+    <input type="file" name="certificate" accept="image/*,.pdf"><br><br>
+
+    <button type="submit" style="background:#8b0000; color:white; padding:10px 20px;">Update</button>
+  </form>
+</body>
+</html>

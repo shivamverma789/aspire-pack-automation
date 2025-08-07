@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificates</title>
+  <style>
+    table { width: 80%; margin: auto; border-collapse: collapse; }
+    th, td { padding: 12px; border: 1px solid #ccc; text-align: center; }
+    a.button { padding: 8px 16px; background: #8b0000; color: white; text-decoration: none; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center;">All Certificates</h1>
+  <div style="text-align:center; margin-bottom:20px;">
+    <a href="/admin/certificates/new" class="button">+ Add Certificate</a>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Certificate</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% certificates.forEach(c => { %>
+        <tr>
+          <td><%= c.name %></td>
+          <td><a href="<%= c.certificate %>" target="_blank">View</a></td>
+          <td>
+            <a href="/admin/certificates/edit/<%= c._id %>" class="button">Edit</a>
+            <a href="/admin/certificates/delete/<%= c._id %>" class="button" style="background: darkred;">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

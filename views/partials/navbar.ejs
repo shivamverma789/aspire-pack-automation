@@ -1,0 +1,61 @@
+<style>
+  nav {
+    background-color: #8b0000;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .nav-logo {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .nav-links a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #ffd700;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-user {
+    color: white;
+    margin-left: 20px;
+    font-size: 0.9rem;
+  }
+</style>
+
+<nav>
+  <a href="/" class="nav-logo">Aspire Packaging</a>
+
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/products">Products</a>
+    <a href="/categories">Categories</a>
+    <a href="/contact">Contact Us</a>
+  </div>
+
+  <div class="nav-right">
+    <% if (user) { %>
+      <span class="nav-user"> <%= user.username %></span>
+      <a href="/logout" style="margin-left: 10px; color: white;">Logout</a>
+    <% } else { %>
+      <a href="/login" style="color: white;">Login</a>
+    <% } %>
+  </div>
+</nav>

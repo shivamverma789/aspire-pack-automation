@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Product</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f0f0f5;
+      padding: 40px;
+    }
+
+    .form-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #8b0000;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .param-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .param-row input {
+      flex: 1;
+    }
+
+    .current-img {
+      height: 80px;
+      object-fit: contain;
+      margin: 5px;
+    }
+
+    .submit-btn {
+      background-color: #8b0000;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 1rem;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #a40000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Edit Product</h2>
+    <form action="/admin/products/update/<%= product._id %>" method="POST" enctype="multipart/form-data">
+
+      <label>Product Name</label>
+      <input type="text" name="productName" value="<%= product.productName %>" required />
+
+      <label>Model Number</label>
+      <input type="text" name="productModelNumber" value="<%= product.productModelNumber %>" required />
+
+      <label>Short Description</label>
+      <input type="text" name="shortDescription" value="<%= product.shortDescription %>" />
+
+      <label>Description</label>
+      <textarea name="productDescription" rows="5"><%= product.productDescription %></textarea>
+
+      <label>Features (comma separated)</label>
+      <input type="text" name="productFeatures" value="<%= product.productFeatures.join(', ') %>" />
+
+      <label>Applications (comma separated)</label>
+      <input type="text" name="productApplications" value="<%= product.productApplications.join(', ') %>" />
+
+      <!-- Main Category -->
+      <label>Main Category</label>
+      <select name="mainCategory" id="mainCategory" required>
+        <% mainCategories.forEach(cat => { %>
+          <option value="<%= cat._id %>" <%= product.categoryId?.toString() === cat._id.toString() ? 'selected' : '' %>><%= cat.name %></option>
+        <% }) %>
+      </select>
+
+      <!-- Sub Category -->
+      <label>Sub Category</label>
+      <select name="subCategory" id="subCategory">
+        <option value="">-- None --</option>
+        <% subCategories.forEach(sub => { %>
+          <option value="<%= sub._id %>" data-parent="<%= sub.parentCategory %>" <%= product.subCategoryId?.toString() === sub._id.toString() ? 'selected' : '' %>><%= sub.name %></option>
+        <% }) %>
+      </select>
+
+
+      <!-- Technical Parameters -->
+      <label>Technical Parameters</label>
+      <div id="param-container">
+        <% product.productParameters.forEach((p, index) => { %>
+          <div class="param-row">
+            <input type="text" name="productParameters[<%= index %>][key]" value="<%= p.key %>" placeholder="Key" />
+            <input type="text" name="productParameters[<%= index %>][value]" value="<%= p.value %>" placeholder="Value" />
+          </div>
+        <% }) %>
+      </div>
+
+      <label>Video URL</label>
+      <input type="text" name="videoURL" value="<%= product.videoURL %>" />
+
+      <label>Specification PDF</label>
+      <input type="file" name="specPDF" />
+      <% if (product.specPDF) { %>
+        <a href="<%= product.specPDF %>" target="_blank">View current PDF</a>
+      <% } %>
+
+      <label>Current Cover Image:</label><br>
+      <img class="current-img" src="<%= product.coverImage %>" alt="Cover" /><br>
+      <input type="file" name="coverImage" accept="image/*" />
+
+      <label>Current Product Images:</label><br>
+      <% product.productImages.forEach(img => { %>
+        <img class="current-img" src="<%= img %>" />
+      <% }) %>
+      <input type="file" name="productImages" multiple accept="image/*" />
+
+      <button type="submit" class="submit-btn">Update Product</button>
+    </form>
+  </div>
+
+  <script>
+  const mainCategorySelect = document.getElementById('mainCategory');
+  const subCategorySelect = document.getElementById('subCategory');
+
+  function filterSubCategories() {
+    const selectedMainCat = mainCategorySelect.value;
+    const subOptions = subCategorySelect.querySelectorAll('option');
+
+    subOptions.forEach(opt => {
+      if (!opt.value) return; // always show "--None--"
+      const parentId = opt.getAttribute('data-parent');
+      if (parentId === selectedMainCat) {
+        opt.style.display = 'block';
+      } else {
+        opt.style.display = 'none';
+        // Reset if selected sub doesn't belong to current main
+        if (opt.selected) opt.selected = false;
+      }
+    });
+  }
+
+  mainCategorySelect.addEventListener('change', filterSubCategories);
+  window.addEventListener('DOMContentLoaded', filterSubCategories);
+</script>
+
+</body>
+</html>

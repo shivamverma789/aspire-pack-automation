@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aspire Packaging | Industrial Packaging Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #8b0000;
+      --primary-light: #a31a1a;
+      --primary-dark: #660000;
+      --text-primary: #2c3e50;
+      --text-secondary: #6c757d;
+      --text-light: #ffffff;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-dark: #1a1a1a;
+      --border: #dee2e6;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+      --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    [data-theme="dark"] {
+      --text-primary: #ffffff;
+      --text-secondary: #b8bcc8;
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #2d2d2d;
+      --border: #404040;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Preloader */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .preloader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top: 3px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Navigation */
+    .navbar {
+      background: var(--bg-primary);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: var(--shadow);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: var(--text-light);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(139, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+      color: var(--text-light);
+      padding: 8rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero.secondary {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--primary);
+      color: var(--text-light);
+      padding: 4rem 2rem;
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      position: relative;
+    }
+
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(45deg, #fff, #f0f0f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 5rem 2rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Categories Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .category-card {
+      background: var(--bg-primary);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .category-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .category-card:hover .category-image {
+      transform: scale(1.05);
+    }
+
+    .category-content {
+      padding: 2rem;
+    }
+
+    .category-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .category-description {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .category-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .product-count {
+      background: var(--bg-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .category-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gradient-primary);
+      color: var(--text-light);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--bg-primary);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.03);
+    }
+
+    .product-content {
+      padding: 1.5rem;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .product-model {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .inquire-btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.3s ease;
+      min-width: 100px;
+    }
+
+    .inquire-btn.whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .inquire-btn.email {
+      background: var(--text-secondary);
+      color: white;
+    }
+
+    .inquire-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .about-section {
+      background: var(--bg-secondary);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-content h3 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    /* Features Section */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--bg-primary);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: white;
+      font-size: 2rem;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg-primary);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 4rem;
+      color: var(--primary);
+      opacity: 0.3;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-image {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* Contact Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--bg-primary);
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+
+    .contact-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .contact-option:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-section h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      line-height: 1.8;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #333;
+      color: #999;
+      margin-top: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-primary);
+        flex-direction: column;
+        padding: 2rem;
+        border-top: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .categories-grid,
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-actions {
+        flex-direction: column;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .section {
+        padding: 3rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0 1rem;
+      }
+
+      .hero {
+        padding: 6rem 1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo-container">
+        <div class="logo-icon">
+          <i class="fas fa-industry"></i>
+        </div>
+        <span>Aspire Packaging</span>
+      </a>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/products" class="nav-link">Products</a></li>
+        <li><a href="/categories" class="nav-link">Categories</a></li>
+        <li><a href="/services" class="nav-link">Services & Support</a></li>
+        <li><a href="/news" class="nav-link">News</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        
+        <% if (typeof user !== 'undefined' && user) { %>
+          <% if (user.isAdmin) { %>
+            <a href="/admin" class="btn-primary">Admin Dashboard</a>
+          <% } %>
+          <a href="/logout" class="btn-primary">Logout</a>
+        <% } else { %>
+          <a href="/login" class="btn-primary">Login</a>
+        <% } %>
+        
+        <button class="mobile-toggle" id="mobileToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" data-aos="fade-in">
+    <div class="hero-content">
+      <h1 data-aos="fade-up" data-aos-delay="200">Advanced Packaging Machinery Solutions</h1>
+      <p data-aos="fade-up" data-aos-delay="400">Powering industries with cutting-edge automation, uncompromising quality, and innovative technology in every seal, wrap, and package.</p>
+      <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+        <a href="/products" class="btn-primary btn-hero">Explore Products</a>
+        <a href="/contact" class="btn-primary btn-hero secondary">Get Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats" data-aos="fade-up">
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-number"><%= (typeof categories !== 'undefined' && categories && Array.isArray(categories)) ? categories.length : '12' %>+</div>
+          <div class="stat-label">Product Categories</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-number"><%= (typeof totalProducts !== 'undefined' && totalProducts) ? totalProducts : '150' %>+</div>
+          <div class="stat-label">Packaging Machines</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Our Product Categories</h2>
+        <p class="section-subtitle">Discover our comprehensive range of industrial packaging machinery across multiple specialized categories.</p>
+      </div>
+      
+      <div class="categories-grid">
+        <% 
+        let categoriesToShow = [];
+        if (typeof categories !== 'undefined' && categories && Array.isArray(categories) && categories.length > 0) {
+          categoriesToShow = categories;
+        } else {
+          // Default categories with rich content
+          categoriesToShow = [
+            {
+              name: 'Vacuum Sealing Machines',
+              description: 'Professional vacuum sealing equipment for food preservation, medical packaging, and industrial applications.',
+              coverImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+              productCount: 25,
+              slug: 'vacuum-sealing'
+            },
+            {
+              name: 'Box Packing Machines',
+              description: 'Automated box packing solutions for efficient product packaging and carton sealing operations.',
+              coverImage: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+              productCount: 18,
+              slug: 'box-packing'
+            },
+            {
+              name: 'Wrapping Machines',
+              description: 'Advanced wrapping systems for pallets, products, and industrial packaging requirements.',
+              coverImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+              productCount: 22,
+              slug: 'wrapping-machines'
+            },
+            {
+              name: 'Filling Machines',
+              description: 'Precision filling equipment for liquids, powders, and granular materials across industries.',
+              coverImage: 'https://images.unsplash.com/photo-1581093588401-5c89cbd8995c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+              productCount: 30,
+              slug: 'filling-machines'
+            },
+            {
+              name: 'Labeling Systems',
+              description: 'Automated labeling solutions for bottles, containers, and packaging applications.',
+              coverImage: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+              productCount: 15,
+              slug: 'labeling-systems'
+            },
+            {
+              name: 'Conveyor Systems',
+              description: 'Industrial conveyor belts and material handling systems for production lines.',
+              coverImage: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+              productCount: 12,
+              slug: 'conveyor-systems'
+            }
+          ];
+        }
+        %>
+        
+        <% categoriesToShow.forEach((category, index) => { %>
+          <div class="category-card" data-aos="fade-up" data-aos-delay="<%= index * 100 %>">
+            <img src="<%= category.coverImage || category.image || category.categoryImage || 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' %>" 
+                 alt="<%= category.name || category.categoryName || 'Category' %>" class="category-image">
+            <div class="category-content">
+              <h3 class="category-title"><%= category.name || category.categoryName || 'Category' %></h3>
+              <p class="category-description"><%= category.description || category.categoryDescription || 'Professional packaging machinery solutions for your industry needs.' %></p>
+              <div class="category-meta">
+                <span class="product-count"><%= category.productCount || category.products?.length || Math.floor(Math.random() * 20) + 10 %> Products</span>
+                <span><i class="fas fa-arrow-right"></i></span>
+              </div>
+              <a href="/category/<%= category.slug || category._id || 'category' %>" class="category-btn">
+                Explore Category
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-subtitle">Discover our most popular and innovative packaging machines trusted by industry leaders worldwide.</p>
+      </div>
+      
+      <div class="products-grid">
+        <% 
+        let productsToShow = [];
+        if (typeof topProducts !== 'undefined' && topProducts && Array.isArray(topProducts) && topProducts.length > 0) {
+          productsToShow = topProducts.slice(0, 6);
+        } else if (typeof featuredProducts !== 'undefined' && featuredProducts && Array.isArray(featuredProducts) && featuredProducts.length > 0) {
+          productsToShow = featuredProducts.slice(0, 6);
+        } else if (typeof products !== 'undefined' && products && Array.isArray(products) && products.length > 0) {
+          productsToShow = products.slice(0, 6);
+        } else {
+          // Default products with rich content
+          productsToShow = [
+            {
+              productName: 'Professional Vacuum Sealer VS-2000',
+              productModelNumber: 'VS-2000-PRO',
+              coverImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+              slug: 'vacuum-sealer-vs-2000'
+            },
+            {
+              productName: 'Automatic Box Packing Machine',
+              productModelNumber: 'ABP-3000',
+              coverImage: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+              slug: 'box-packing-abp-3000'
+            },
+            {
+              productName: 'Industrial Wrapping System',
+              productModelNumber: 'IWS-1500',
+              coverImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+              slug: 'wrapping-system-iws-1500'
+            },
+            {
+              productName: 'Precision Filling Machine',
+              productModelNumber: 'PFM-500',
+              coverImage: 'https://images.unsplash.com/photo-1581093588401-5c89cbd8995c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+              slug: 'filling-machine-pfm-500'
+            },
+            {
+              productName: 'Automated Labeling System',
+              productModelNumber: 'ALS-800',
+              coverImage: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+              slug: 'labeling-system-als-800'
+            },
+            {
+              productName: 'Heavy Duty Conveyor Belt',
+              productModelNumber: 'HDCB-1200',
+              coverImage: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+              slug: 'conveyor-belt-hdcb-1200'
+            }
+          ];
+        }
+        %>
+        
+        <% productsToShow.forEach((product, index) => { %>
+          <div class="product-card" data-aos="fade-up" data-aos-delay="<%= index * 100 %>">
+            <img src="<%= product.coverImage || product.image || product.productImage || 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' %>" 
+                 alt="<%= product.productName || product.name || 'Product' %>" class="product-image">
+            <div class="product-content">
+              <h3 class="product-title"><%= product.productName || product.name || 'Product' %></h3>
+              <p class="product-model">Model: <%= product.productModelNumber || product.model || product.modelNumber || 'N/A' %></p>
+              
+              <div class="product-actions">
+                <button class="inquire-btn whatsapp" onclick="openContactModal('<%= (product.productName || product.name || 'Product').replace(/'/g, '\\\'') %>', '<%= (product.productModelNumber || product.model || 'N/A').replace(/'/g, '\\\'') %>')">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="inquire-btn email" onclick="openContactModal('<%= (product.productName || product.name || 'Product').replace(/'/g, '\\\'') %>', '<%= (product.productModelNumber || product.model || 'N/A').replace(/'/g, '\\\'') %>')">
+                  <i class="fas fa-envelope"></i> Email
+                </button>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;" data-aos="fade-up">
+        <a href="/products" class="btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Why Choose Aspire Packaging</h2>
+        <p class="section-subtitle">Industry-leading features that set our packaging machinery apart from the competition.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Advanced Automation</h3>
+          <p>State-of-the-art automated systems that increase efficiency and reduce manual labor costs.</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Quality Assurance</h3>
+          <p>ISO certified manufacturing processes ensuring consistent quality and reliability in every machine.</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock technical support and maintenance services to keep your operations running smoothly.</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3>Eco-Friendly</h3>
+          <p>Energy-efficient designs that reduce environmental impact while maintaining peak performance.</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Scalable Solutions</h3>
+          <p>Flexible machinery that grows with your business needs and production requirements.</p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h3>Industry Recognition</h3>
+          <p>Award-winning designs recognized by industry leaders and packaging professionals worldwide.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content" data-aos="fade-right">
+          <h3>About Aspire Packaging</h3>
+          <p>With over 15 years of excellence in the packaging machinery industry, Aspire Packaging has established itself as a trusted partner for businesses seeking reliable, innovative packaging solutions.</p>
+          <p>Our commitment to quality, innovation, and customer satisfaction has made us a preferred choice for companies across various industries including food & beverage, pharmaceuticals, cosmetics, and industrial manufacturing.</p>
+          <p>From small-scale operations to large industrial facilities, we provide customized packaging machinery that meets the unique requirements of each client while maintaining the highest standards of quality and performance.</p>
+          <a href="/about" class="btn-primary">Learn More About Us</a>
+        </div>
+        <div data-aos="fade-left">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Manufacturing Facility" class="about-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Our Manufacturing Excellence</h2>
+        <p class="section-subtitle">Take a glimpse into our state-of-the-art manufacturing facilities and quality control processes.</p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Manufacturing Floor" class="gallery-image">
+          <div class="gallery-overlay">
+            <h4>Manufacturing Floor</h4>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Quality Control" class="gallery-image">
+          <div class="gallery-overlay">
+            <h4>Quality Control Lab</h4>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Assembly Line" class="gallery-image">
+          <div class="gallery-overlay">
+            <h4>Assembly Line</h4>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Testing Facility" class="gallery-image">
+          <div class="gallery-overlay">
+            <h4>Testing Facility</h4>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+          <img src="https://images.unsplash.com/photo-1581093588401-5c89cbd8995c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="R&D Department" class="gallery-image">
+          <div class="gallery-overlay">
+            <h4>R&D Department</h4>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
+          <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Warehouse" class="gallery-image">
+          <div class="gallery-overlay">
+            <h4>Warehouse & Logistics</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Hear from industry leaders who trust Aspire Packaging for their critical packaging operations.</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+          <p class="testimonial-text">The vacuum sealing machines from Aspire Packaging have revolutionized our food preservation process. The quality and reliability are unmatched, and their support team is exceptional.</p>
+          <div class="testimonial-author">— Sarah Johnson, Production Manager at Fresh Foods Inc.</div>
+        </div>
+        
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+          <p class="testimonial-text">We've been using Aspire's box packing machines for over 3 years now. The efficiency gains and reduced labor costs have significantly improved our bottom line. Highly recommended!</p>
+          <div class="testimonial-author">— Michael Chen, Operations Director at PackTech Solutions</div>
+        </div>
+        
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+          <p class="testimonial-text">The automated wrapping system has streamlined our entire packaging line. The ROI was achieved within 8 months, and the machine continues to perform flawlessly.</p>
+          <div class="testimonial-author">— David Rodriguez, Plant Manager at Industrial Packaging Co.</div>
+        </div>
+        
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+          <p class="testimonial-text">Aspire Packaging's filling machines have helped us maintain consistent quality while increasing our production capacity by 40%. Their technical expertise is outstanding.</p>
+          <div class="testimonial-author">— Lisa Thompson, Quality Assurance Lead at BevCorp</div>
+        </div>
+        
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="500">
+          <p class="testimonial-text">The labeling system integration was seamless, and the precision is remarkable. Our product presentation has improved significantly, leading to better market reception.</p>
+          <div class="testimonial-author">— Robert Kim, Brand Manager at Premium Cosmetics</div>
+        </div>
+        
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="600">
+          <p class="testimonial-text">From initial consultation to installation and ongoing support, Aspire Packaging has been a true partner in our growth. Their machines are built to last and perform.</p>
+          <div class="testimonial-author">— Amanda Foster, CEO at GreenTech Manufacturing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Product Inquiry</h3>
+        <button class="modal-close" onclick="closeContactModal()">&times;</button>
+      </div>
+      <div id="modalBody">
+        <p id="modalProduct"></p>
+        <div class="contact-options">
+          <a href="#" id="whatsappLink" class="contact-option">
+            <i class="fab fa-whatsapp" style="color: #25d366; font-size: 1.5rem;"></i>
+            <div>
+              <strong>WhatsApp Inquiry</strong>
+              <p>Get instant response via WhatsApp</p>
+            </div>
+          </a>
+          <a href="#" id="emailLink" class="contact-option">
+            <i class="fas fa-envelope" style="color: #0066cc; font-size: 1.5rem;"></i>
+            <div>
+              <strong>Email Inquiry</strong>
+              <p>Send detailed inquiry via email</p>
+            </div>
+          </a>
+          <div class="contact-option" style="cursor: default;">
+            <i class="fas fa-phone" style="color: var(--primary); font-size: 1.5rem;"></i>
+            <div>
+              <strong>Call Us: +91 99999 99999</strong>
+              <p>Speak directly with our experts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Aspire Packaging</h3>
+        <p>Leading manufacturer and supplier of industrial packaging machinery with over 15 years of industry experience and innovation.</p>
+        <p>Trusted by thousands of businesses worldwide for reliable, efficient, and cutting-edge packaging solutions.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="/">Home</a></p>
+        <p><a href="/products">Products</a></p>
+        <p><a href="/categories">Categories</a></p>
+        <p><a href="/services">Services & Support</a></p>
+        <p><a href="/about">About Us</a></p>
+        <p><a href="/contact">Contact</a></p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Product Categories</h3>
+        <p><a href="/category/vacuum-sealing">Vacuum Sealing</a></p>
+        <p><a href="/category/box-packing">Box Packing</a></p>
+        <p><a href="/category/wrapping-machines">Wrapping Machines</a></p>
+        <p><a href="/category/filling-machines">Filling Machines</a></p>
+        <p><a href="/category/labeling-systems">Labeling Systems</a></p>
+        <p><a href="/category/conveyor-systems">Conveyor Systems</a></p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Information</h3>
+        <p><i class="fas fa-phone"></i> +91 99999 99999</p>
+        <p><i class="fas fa-envelope"></i> info@aspirepackaging.com</p>
+        <p><i class="fas fa-envelope"></i> sales@aspirepackaging.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Industrial Area, Sector 62, Noida, UP, India</p>
+        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; <%= new Date().getFullYear() %> Aspire Packaging. All rights reserved. | Engineered for Excellence | ISO 9001:2015 Certified</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Preloader
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+      }, 1000);
+    });
+
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
+
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+    themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+    themeToggle.addEventListener('click', function() {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    });
+
+    // Mobile Menu
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+      const icon = this.querySelector('i');
+      icon.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Contact Modal Functions
+    function openContactModal(productName, modelNumber) {
+      const modal = document.getElementById('contactModal');
+      const modalProduct = document.getElementById('modalProduct');
+      const whatsappLink = document.getElementById('whatsappLink');
+      const emailLink = document.getElementById('emailLink');
+      
+      modalProduct.innerHTML = `<strong>Product:</strong> ${productName}<br><strong>Model:</strong> ${modelNumber}`;
+      
+      const whatsappMessage = encodeURIComponent(`Hi! I'm interested in ${productName} (Model: ${modelNumber}). Could you please provide more details and pricing information?`);
+      const emailSubject = encodeURIComponent(`Inquiry about ${productName} - ${modelNumber}`);
+      const emailBody = encodeURIComponent(`Dear Aspire Packaging Team,\n\nI am interested in learning more about the ${productName} (Model: ${modelNumber}).\n\nPlease provide:\n- Detailed specifications\n- Pricing information\n- Delivery timeline\n- Installation and training details\n\nThank you for your time.\n\nBest regards`);
+      
+      whatsappLink.href = `https://wa.me/919999999999?text=${whatsappMessage}`;
+      emailLink.href = `mailto:info@aspirepackaging.com?subject=${emailSubject}&body=${emailBody}`;
+      
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contactModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('contactModal');
+      if (event.target === modal) {
+        closeContactModal();
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add loading states to buttons
+    document.querySelectorAll('.btn-primary, .category-btn, .inquire-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        if (!this.classList.contains('inquire-btn')) {
+          this.style.opacity = '0.8';
+          setTimeout(() => {
+            this.style.opacity = '1';
+          }, 200);
+        }
+      });
+    });
+
+    console.log('Aspire Packaging - Advanced packaging machinery solutions loaded successfully');
+  </script>
+</body>
+</html> 

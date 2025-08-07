@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>News & Updates | Aspire Packaging</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin: 0; background: #fdfdfd; color: #333; }
+    header {
+      background: #8b0000;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 2.5rem; }
+
+    .news-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .news-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-left: 5px solid #8b0000;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 5px;
+      transition: 0.3s ease;
+    }
+
+    .news-item:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .news-item h3 {
+      margin: 0 0 0.5rem;
+      color: #8b0000;
+    }
+
+    .news-item p {
+      margin: 0.2rem 0;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .date {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    footer {
+      background: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Latest News & Updates</h1>
+  </header>
+
+  <section class="news-section">
+    <div class="news-item">
+      <h3>New Band Sealer Series Launched</h3>
+      <p class="date">July 20, 2025</p>
+      <p>We’re excited to announce the release of our upgraded FRB-1120 band sealer series with enhanced print clarity and energy efficiency.</p>
+    </div>
+
+    <div class="news-item">
+      <h3>Aspire Participates in PackTech Expo 2025</h3>
+      <p class="date">June 2, 2025</p>
+      <p>Our latest packaging solutions were featured at the international packaging expo held in Mumbai. Great response from over 300+ business delegates!</p>
+    </div>
+
+    <div class="news-item">
+      <h3>New Warehouse Opens in Delhi NCR</h3>
+      <p class="date">May 10, 2025</p>
+      <p>We now offer faster delivery and better support in North India with our new logistics hub in Faridabad.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; <%= new Date().getFullYear() %> Aspire Packaging. All rights reserved.
+  </footer>
+
+</body>
+</html>
