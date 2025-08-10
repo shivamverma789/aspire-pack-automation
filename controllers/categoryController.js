@@ -1,11 +1,13 @@
 const Category = require('../models/categoryModel');
 const slugify = require('slugify'); // ✅ Import slugify
+const { cloudinary } = require('../utils/cloudinary');
+
 
 // GET all categories (Admin)
 const getAllCategories = async (req, res) => {
   try {
     // Fetch all categories and populate subcategories
-    const categories = await Category.find({})
+    const categories = await Category.find({ parentCategory: null })
       .populate('subcategories') // Get subcategory data
       .populate('parentCategory') // Get parent info for subcategories
       .lean(); // Convert to plain JS objects
@@ -93,6 +95,20 @@ const updateCategory = async (req, res) => {
       });
     }
 
+    // 🗑 Delete old coverImage from Cloudinary if a new one is uploaded
+    if (req.file) {
+      if (category.coverImage) {
+        const parts = category.coverImage.split('/');
+        const publicIdWithExt = parts.slice(-2).join('/'); // folder/filename.jpg
+        const publicId = publicIdWithExt.substring(0, publicIdWithExt.lastIndexOf('.'));
+        try {
+          await cloudinary.uploader.destroy(publicId);
+        } catch (err) {
+          console.error(`Error deleting old category cover image from Cloudinary:`, err);
+        }
+      }
+    }
+
     // Build update object
     const update = {
       name,
@@ -114,6 +130,7 @@ const updateCategory = async (req, res) => {
 };
 
 
+
 // POST DELETE Category (Admin)
 const deleteCategory = async (req, res) => {
   try {
@@ -133,8 +150,22 @@ const deleteCategory = async (req, res) => {
       });
     }
 
-    // Delete the category
+    // 🗑 Delete coverImage from Cloudinary
+    if (category.coverImage) {
+      const parts = category.coverImage.split('/');
+      const publicIdWithExt = parts.slice(-2).join('/'); // folder/filename.jpg
+      const publicId = publicIdWithExt.substring(0, publicIdWithExt.lastIndexOf('.')); // folder/filename
+
+      try {
+        await cloudinary.uploader.destroy(publicId);
+      } catch (err) {
+        console.error(`Error deleting category image from Cloudinary:`, err);
+      }
+    }
+
+    // Delete the category from DB
     await Category.findByIdAndDelete(req.params.id);
+
     res.redirect('/admin/categories');
   } catch (err) {
     console.error(err);

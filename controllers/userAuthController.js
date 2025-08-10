@@ -41,7 +41,7 @@ const postRegister = async (req, res) => {
 const logout = (req, res) => {
   req.logout(err => {
     if (err) return next(err);
-    res.redirect('/login');
+    res.redirect('/');
   });
 };
 

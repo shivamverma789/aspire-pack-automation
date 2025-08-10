@@ -33,10 +33,11 @@ router.get('/logout', userAuthController.logout);
 
 
 // View all products (public)
-router.get('/products', productController.getPublicProducts);
+router.get(['/products', '/category/:slug'], productController.getPublicProducts);
+
 
 // View product by category
-router.get('/category/:slug', productController.getProductsByCategory);
+// router.get('/category/:slug', productController.getProductsByCategory);
 
 // View single product detail
 router.get('/product/:slug', productController.getProductDetails);

@@ -18,6 +18,7 @@ exports.createProduct = async (req, res) => {
       subCategory,
       videoURL
     } = req.body;
+    
 
     // Extract media files safely
     const coverImage = req.files?.coverImage?.[0]?.path || '';
@@ -69,6 +70,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
+
 exports.updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -94,14 +96,42 @@ exports.updateProduct = async (req, res) => {
     const newMain = mainCategory;
     const newSub = subCategory || null;
 
-    // ✅ Update files if newly uploaded
+    // 🗑 Helper function to delete from Cloudinary
+    const deleteFromCloudinary = async (imageUrl) => {
+      if (!imageUrl) return;
+      const parts = imageUrl.split('/');
+      const publicIdWithExt = parts.slice(-2).join('/'); // folder/filename.jpg
+      const publicId = publicIdWithExt.substring(0, publicIdWithExt.lastIndexOf('.'));
+      try {
+        await cloudinary.uploader.destroy(publicId);
+      } catch (err) {
+        console.error(`Error deleting old image from Cloudinary:`, err);
+      }
+    };
+
+    // ✅ If new coverImage uploaded → delete old one
     if (req.files.coverImage) {
+      if (product.coverImage) {
+        await deleteFromCloudinary(product.coverImage);
+      }
       product.coverImage = req.files.coverImage[0].path;
     }
+
+    // ✅ If new productImages uploaded → delete all old ones
     if (req.files.productImages) {
+      if (product.productImages && product.productImages.length > 0) {
+        for (const img of product.productImages) {
+          await deleteFromCloudinary(img);
+        }
+      }
       product.productImages = req.files.productImages.map(file => file.path);
     }
+
+    // ✅ If new specPDF uploaded → delete old one from Cloudinary
     if (req.files.specPDF) {
+      if (product.specPDF) {
+        await deleteFromCloudinary(product.specPDF);
+      }
       product.specPDF = req.files.specPDF[0].path;
     }
 
@@ -127,28 +157,22 @@ exports.updateProduct = async (req, res) => {
 
     await product.save();
 
-    // ✅ Remove product from old main category if changed
+    // ✅ Update categories if changed
     if (oldMain && oldMain !== newMain) {
       await Category.findByIdAndUpdate(oldMain, {
         $pull: { products: product._id }
       });
     }
-
-    // ✅ Add to new main category if different
     if (newMain && oldMain !== newMain) {
       await Category.findByIdAndUpdate(newMain, {
         $addToSet: { products: product._id }
       });
     }
-
-    // ✅ Remove from old subcategory
     if (oldSub && oldSub !== newSub) {
       await Category.findByIdAndUpdate(oldSub, {
         $pull: { products: product._id }
       });
     }
-
-    // ✅ Add to new subcategory
     if (newSub && oldSub !== newSub) {
       await Category.findByIdAndUpdate(newSub, {
         $addToSet: { products: product._id }
@@ -163,13 +187,40 @@ exports.updateProduct = async (req, res) => {
 };
 
 
+
 // DELETE Product (Admin)
+
 exports.deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
     const product = await Product.findById(id);
     if (!product) return res.status(404).send('Product not found');
+
+    // Remove images from Cloudinary
+    const deleteImageFromCloudinary = async (imageUrl) => {
+      if (!imageUrl) return;
+
+      // Extract public_id from the URL
+      // Example URL: https://res.cloudinary.com/demo/image/upload/v1234567890/folder/filename.jpg
+      const parts = imageUrl.split('/');
+      const publicIdWithExt = parts.slice(-2).join('/'); // folder/filename.jpg
+      const publicId = publicIdWithExt.substring(0, publicIdWithExt.lastIndexOf('.')); // folder/filename
+
+      try {
+        await cloudinary.uploader.destroy(publicId);
+      } catch (err) {
+        console.error(`Error deleting image ${publicId} from Cloudinary:`, err);
+      }
+    };
+
+    // Delete cover image
+    await deleteImageFromCloudinary(product.coverImage);
+
+    // Delete all product images
+    for (const img of product.productImages) {
+      await deleteImageFromCloudinary(img);
+    }
 
     // Remove product from its main category
     if (product.categoryId) {
@@ -196,44 +247,63 @@ exports.deleteProduct = async (req, res) => {
 };
 
 
+
 // GET All Products (Admin View)
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find().populate('categoryId');
-    res.render('admin/products/list', { products });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error fetching products');
-  }
-};
-
-// GET Public All Products
-exports.getPublicProducts = async (req, res) => {
-  const { category, subcategory } = req.query;
-
-  try {
-    // Get all products — not filtered
     const products = await Product.find({})
       .populate('categoryId')
-      .populate('subCategoryId');
+      .populate('subCategoryId')
+      .lean();
 
-    const allCategories = await Category.find({});
-    const mainCategories = allCategories.filter(c => !c.parentCategory);
-    const subCategories = allCategories.filter(c => c.parentCategory);
+    const categories = await Category.find({ parentCategory: null }) // main categories
+      .populate('subcategories')
+      .lean();
 
-    res.render('products/allProducts', {
-      products,               // all products, not filtered
-      allCategories,
-      mainCategories,
-      subCategories,
-      selectedCategory: category || '',
-      selectedSubCategory: subcategory || ''
+    res.render('admin/products/list', {
+      products,
+      categories,  // ✅ Now categories is defined
+      user: req.user // if you need user role for admin button
     });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Something went wrong");
+    res.status(500).send("Server error");
   }
 };
+
+
+// GET Public All Products
+exports.getPublicProducts = async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    const products = await Product.find({})
+      .populate('categoryId')
+      .populate('subCategoryId')
+      .lean();
+
+    const categories = await Category.find({ parentCategory: null })
+      .populate('subcategories')
+      .lean();
+
+    // Ensure subcategories is always an array
+    categories.forEach(cat => {
+      if (!Array.isArray(cat.subcategories)) {
+        cat.subcategories = [];
+      }
+    });
+
+    res.render('products/allProducts', {
+      products,
+      categories,
+      preselectedCategorySlug: slug || '' // for frontend filter
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+};
+
 
 // GET Products by Category
 exports.getProductsByCategory = async (req, res) => {

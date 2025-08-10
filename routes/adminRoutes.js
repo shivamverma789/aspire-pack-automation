@@ -4,6 +4,8 @@ const router = express.Router();
 const ensureAdmin = require('../middlewares/ensureAdmin');
 const authController = require('../controllers/authController');
 
+//
+router.get('/register/123', authController.getAdminRegister);
 
 // Register (only for setup)
 router.post('/register', authController.postRegister);

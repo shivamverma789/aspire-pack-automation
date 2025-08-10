@@ -3,8 +3,8 @@ const Product = require('../models/productModel');
 
 exports.renderHome = async (req, res) => {
   try {
-    const categories = await Category.find().limit(6);
-    const topProducts = await Product.find().sort({ _id: -1 }).limit(6); // or use likes/featured field
+    const categories = await Category.find({ parentCategory: null }).limit(4);
+    const topProducts = await Product.find().sort({ _id: -1 }).limit(8); // or use likes/featured field
     const user = req.user || null;
 
     res.render('index', { categories, topProducts, user });

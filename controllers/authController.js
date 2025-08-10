@@ -9,18 +9,25 @@ const Certificate = require('../models/certificateModel');
 const adminDashboard = async (req, res) => {
   try {
     const totalProducts = await Product.countDocuments();
-    const totalCategories = await Category.countDocuments();
+    const totalCategories = await Category.countDocuments({ parentCategory: null });
     const totalCertificates = await Certificate.countDocuments();
+    const totalUsers =await User.countDocuments();
 
     res.render('admin/dashboard', {
       totalProducts,
       totalCategories,
-      totalCertificates
+      totalCertificates,
+      totalUsers
     });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error loading dashboard');
   }
+};
+//admin reg
+
+const getAdminRegister = (req, res) => {
+  res.render('admin/register'); // EJS view: views/auth/adminRegister.ejs
 };
 
 // Handle first-time admin registration (optional)
@@ -42,7 +49,7 @@ const postRegister = async (req, res) => {
     });
 
     await admin.save();
-    res.redirect('login');
+    res.redirect('/admin/dashboard');
   } catch (err) {
     console.error(err);
     res.status(500).send("Error creating admin");
@@ -53,7 +60,7 @@ const postRegister = async (req, res) => {
 const logout = (req, res) => {
   req.logout(err => {
     if (err) return next(err);
-    res.redirect('/login');
+    res.redirect('/');
   });
 };
 
@@ -66,6 +73,7 @@ const ensureAuthenticated = (req, res, next) => {
 };
 
 module.exports = {
+  getAdminRegister,
   adminDashboard,
   postRegister,
   logout,

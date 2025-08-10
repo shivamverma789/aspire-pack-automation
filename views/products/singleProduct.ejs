@@ -23,7 +23,6 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
         }
-
         [data-theme="dark"] {
             --text-color: #e9ecef;
             --text-light: #adb5bd;
@@ -35,13 +34,11 @@
             --shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
             --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f5f5f5;
@@ -49,8 +46,6 @@
             line-height: 1.6;
             transition: var(--transition);
         }
-
-        /* Original Navbar from Version 7 */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -61,11 +56,9 @@
             transition: var(--transition);
             border-bottom: 1px solid var(--border-color);
         }
-
         [data-theme="dark"] .navbar {
             background: rgba(26, 26, 26, 0.95);
         }
-
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -75,7 +68,6 @@
             align-items: center;
             height: 80px;
         }
-
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -85,7 +77,6 @@
             align-items: center;
             gap: 12px;
         }
-
         .logo i {
             font-size: 2rem;
             background: var(--gradient-primary);
@@ -93,14 +84,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 35px;
             align-items: center;
         }
-
         .nav-link {
             color: var(--text-color);
             text-decoration: none;
@@ -109,11 +98,9 @@
             position: relative;
             padding: 8px 0;
         }
-
         .nav-link:hover {
             color: var(--primary-color);
         }
-
         .nav-link::after {
             content: '';
             position: absolute;
@@ -124,17 +111,14 @@
             background: var(--gradient-primary);
             transition: width 0.3s ease;
         }
-
         .nav-link:hover::after {
             width: 100%;
         }
-
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 20px;
         }
-
         .theme-toggle {
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
@@ -145,13 +129,11 @@
             transition: var(--transition);
             font-size: 14px;
         }
-
         .theme-toggle:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
             transform: scale(1.05);
         }
-
         .btn-primary {
             background: var(--gradient-primary);
             color: white;
@@ -164,12 +146,10 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
         }
-
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
         }
-
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -178,29 +158,23 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-
-        /* Hero Section */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/placeholder.svg?height=300&width=1200&text=Industrial+Background') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5kdXN0cmlhbCUyMHdhcmVob3VzZXxlbnwwfHwwfHx8MA%3D%3D") center/cover;
             color: white;
             padding: 80px 0;
             text-align: center;
         }
-
         .hero-content h1 {
             font-size: 3rem;
             margin-bottom: 15px;
             font-weight: 300;
         }
-
         .hero-content p {
             font-size: 1.2rem;
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
         }
-
-        /* Breadcrumb */
         .breadcrumb {
             background: rgba(255,255,255,0.9);
             padding: 15px 0;
@@ -208,74 +182,32 @@
             position: relative;
             z-index: 10;
         }
-
         .breadcrumb-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         .breadcrumb-nav {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
         }
-
         .breadcrumb-nav a {
             color: var(--text-light);
             text-decoration: none;
         }
-
         .breadcrumb-nav a:hover {
             color: var(--primary-color);
         }
-
         .breadcrumb-separator {
             color: var(--text-muted);
         }
-
         .breadcrumb-current {
             color: var(--text-color);
             font-weight: 500;
         }
-
-        /* Contact Sidebar */
-        .contact-sidebar {
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .contact-item {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-
-        .contact-phone { background: #333; }
-        .contact-mobile { background: #007bff; }
-        .contact-whatsapp { background: #25d366; }
-        .contact-wechat { background: #1aad19; }
-        .contact-email { background: #dc3545; }
-
-        .contact-item:hover {
-            transform: translateX(10px);
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-
-        /* Main Content */
+        /* Removed .contact-sidebar as per user request */
         .main-content {
             max-width: 1200px;
             margin: 40px auto;
@@ -285,21 +217,17 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-
         .product-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             padding: 40px;
         }
-
-        /* Product Image */
         .product-image-section {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .main-image-container {
             border: 1px solid #eee;
             border-radius: 8px;
@@ -307,7 +235,6 @@
             background: #f9f9f9;
             position: relative;
         }
-
         .main-product-image {
             width: 100%;
             height: 400px;
@@ -315,17 +242,14 @@
             cursor: zoom-in;
             transition: var(--transition);
         }
-
         .main-product-image:hover {
             transform: scale(1.05);
         }
-
         .thumbnail-container {
             display: flex;
             gap: 10px;
             justify-content: center;
         }
-
         .thumbnail-image {
             width: 80px;
             height: 80px;
@@ -335,24 +259,19 @@
             cursor: pointer;
             transition: var(--transition);
         }
-
         .thumbnail-image:hover,
         .thumbnail-image.active {
             border-color: var(--primary-color);
         }
-
-        /* Product Info */
         .product-info-section {
             padding: 20px 0;
         }
-
         .product-title {
             font-size: 2rem;
             color: var(--text-color);
             margin-bottom: 10px;
             font-weight: 600;
         }
-
         .product-model {
             color: var(--text-light);
             font-size: 1.1rem;
@@ -361,7 +280,6 @@
             align-items: center;
             gap: 10px;
         }
-
         .qr-code {
             width: 20px;
             height: 20px;
@@ -371,56 +289,18 @@
             justify-content: center;
             font-size: 12px;
         }
-
-        .quantity-section {
+        .product-short-description {
             margin: 30px 0;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
         }
-
-        .quantity-label {
-            font-weight: 500;
-            margin-bottom: 10px;
-            color: var(--text-color);
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .quantity-btn {
-            width: 35px;
-            height: 35px;
-            border: 1px solid #ddd;
-            background: #f8f9fa;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .quantity-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .quantity-input {
-            width: 60px;
-            height: 35px;
-            text-align: center;
-            border: 1px solid #ddd;
-            font-size: 16px;
-        }
-
         .action-buttons {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin: 30px 0;
         }
-
         .btn-inquire {
             background: transparent;
             color: var(--primary-color);
@@ -436,16 +316,14 @@
             justify-content: center;
             gap: 8px;
         }
-
         .btn-inquire:hover {
             background: var(--primary-color);
             color: white;
         }
-
-        .btn-basket {
+        .btn-whatsapp-direct, .btn-email-direct {
             background: transparent;
-            color: #007bff;
-            border: 2px solid #007bff;
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
             padding: 12px 30px;
             border-radius: 25px;
             font-size: 16px;
@@ -456,14 +334,31 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            text-decoration: none; /* Ensure it looks like a button, not a link */
         }
-
-        .btn-basket:hover {
-            background: #007bff;
+        .btn-whatsapp-direct {
+            background: #25D366;
             color: white;
+            border-color: #25D366;
+        }
+        .btn-whatsapp-direct:hover {
+            background: #1DA851;
+            border-color: #1DA851;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        .btn-email-direct {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .btn-email-direct:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
         }
 
-        /* Product Details */
         .product-details {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -472,39 +367,31 @@
             border-top: 1px solid #eee;
             background: #f9f9f9;
         }
-
         .detail-item {
             text-align: center;
         }
-
         .detail-label {
             font-weight: 500;
             color: var(--text-color);
             margin-bottom: 5px;
         }
-
         .detail-value {
             color: var(--text-light);
             font-size: 14px;
         }
-
-        /* Social Share */
         .social-share {
             padding: 20px 40px;
             border-top: 1px solid #eee;
         }
-
         .share-label {
             font-weight: 500;
             margin-bottom: 15px;
             color: var(--text-color);
         }
-
         .share-buttons {
             display: flex;
             gap: 10px;
         }
-
         .share-btn {
             width: 35px;
             height: 35px;
@@ -516,27 +403,21 @@
             text-decoration: none;
             transition: var(--transition);
         }
-
         .share-btn:hover {
             transform: translateY(-2px);
         }
-
         .share-facebook { background: #3b5998; }
         .share-twitter { background: #1da1f2; }
         .share-linkedin { background: #0077b5; }
         .share-whatsapp { background: #25d366; }
         .share-email { background: #dc3545; }
-
-        /* Tabs Section */
         .tabs-section {
             border-top: 1px solid #eee;
         }
-
         .tab-navigation {
             display: flex;
             background: #f8f9fa;
         }
-
         .tab-btn {
             flex: 1;
             padding: 15px 20px;
@@ -549,33 +430,26 @@
             transition: var(--transition);
             border-bottom: 3px solid transparent;
         }
-
         .tab-btn.active {
             color: var(--primary-color);
             border-bottom-color: var(--primary-color);
             background: white;
         }
-
         .tab-content {
             padding: 40px;
             min-height: 300px;
         }
-
         .tab-panel {
             display: none;
         }
-
         .tab-panel.active {
             display: block;
         }
-
         .description-content {
             font-size: 16px;
             line-height: 1.8;
             color: var(--text-light);
         }
-
-        /* Additional Sections */
         .section {
             max-width: 1200px;
             margin: 40px auto;
@@ -585,12 +459,10 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-
         .section-header {
             padding: 30px 40px 20px;
             border-bottom: 1px solid #eee;
         }
-
         .section-title {
             font-size: 1.8rem;
             font-weight: 600;
@@ -600,24 +472,19 @@
             align-items: center;
             gap: 10px;
         }
-
         .section-title i {
             color: var(--primary-color);
         }
-
         .section-subtitle {
             color: var(--text-light);
             font-size: 1rem;
         }
-
-        /* Product Images Gallery */
         .product-images-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 40px;
         }
-
         .product-image-item {
             position: relative;
             border-radius: 8px;
@@ -626,18 +493,15 @@
             transition: var(--transition);
             border: 1px solid #eee;
         }
-
         .product-image-item:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-
         .product-image-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-
         .image-overlay {
             position: absolute;
             top: 0;
@@ -651,21 +515,16 @@
             opacity: 0;
             transition: var(--transition);
         }
-
         .product-image-item:hover .image-overlay {
             opacity: 1;
         }
-
         .image-overlay i {
             color: white;
             font-size: 2rem;
         }
-
-        /* Technical Parameters Table */
         .specs-table-container {
             padding: 40px;
         }
-
         .specs-table {
             width: 100%;
             border-collapse: collapse;
@@ -674,7 +533,6 @@
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
         .specs-table th {
             background: var(--gradient-primary);
             color: white;
@@ -683,39 +541,31 @@
             font-weight: 600;
             font-size: 1rem;
         }
-
         .specs-table td {
             padding: 15px 20px;
             border-bottom: 1px solid #eee;
         }
-
         .specs-table tr:nth-child(even) {
             background: #f9f9f9;
         }
-
         .specs-table tr:last-child td {
             border-bottom: none;
         }
-
         .specs-table td:first-child {
             font-weight: 500;
             color: var(--text-color);
             width: 30%;
             background: rgba(139, 0, 0, 0.05);
         }
-
         .specs-table td:last-child {
             color: var(--text-light);
         }
-
-        /* Similar Products */
         .similar-products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             padding: 40px;
         }
-
         .similar-product-card {
             background: white;
             border: 1px solid #eee;
@@ -724,35 +574,29 @@
             transition: var(--transition);
             cursor: pointer;
         }
-
         .similar-product-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
             border-color: var(--primary-color);
         }
-
         .similar-product-image {
             position: relative;
             overflow: hidden;
             height: 180px;
             background: #f9f9f9;
         }
-
         .similar-product-image img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             transition: var(--transition);
         }
-
         .similar-product-card:hover .similar-product-image img {
             transform: scale(1.1);
         }
-
         .similar-product-info {
             padding: 20px;
         }
-
         .similar-product-name {
             font-size: 1.1rem;
             font-weight: 600;
@@ -760,20 +604,17 @@
             margin-bottom: 8px;
             line-height: 1.3;
         }
-
         .similar-product-model {
             color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 15px;
         }
-
         .similar-product-features {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
             margin-bottom: 15px;
         }
-
         .feature-tag {
             background: var(--primary-light);
             color: var(--primary-color);
@@ -783,12 +624,10 @@
             font-weight: 600;
             border: 1px solid rgba(139, 0, 0, 0.2);
         }
-
         .similar-product-actions {
             display: flex;
             gap: 10px;
         }
-
         .btn-view-details {
             background: var(--gradient-primary);
             color: white;
@@ -805,12 +644,10 @@
             flex: 1;
             justify-content: center;
         }
-
         .btn-view-details:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
         }
-
         .btn-quick-inquiry {
             background: transparent;
             color: var(--text-color);
@@ -827,13 +664,10 @@
             flex: 1;
             justify-content: center;
         }
-
         .btn-quick-inquiry:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
         }
-
-        /* Enhanced Footer */
         .footer {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: #e9ecef;
@@ -841,7 +675,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .footer::before {
             content: '';
             position: absolute;
@@ -851,89 +684,20 @@
             height: 4px;
             background: var(--gradient-primary);
         }
-
-        .footer-wave {
-            position: absolute;
-            top: -50px;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: #f5f5f5;
-            clip-path: ellipse(100% 100% at 50% 100%);
-        }
-
+        /* Removed .footer-wave as per user request */
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
             padding: 80px 30px 40px;
             position: relative;
             z-index: 2;
+            display: grid; /* Added grid for new footer structure */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 50px; /* Gap between sections */
         }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-
-        .footer-brand {
-            max-width: 400px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
-        }
-
-        .footer-logo i {
-            font-size: 2.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #adb5bd;
-            margin-bottom: 30px;
-        }
-
-        .footer-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #adb5bd;
-            margin-top: 5px;
-        }
-
+        /* Removed .footer-main as per user request */
+        /* Removed .footer-brand, .footer-description, .footer-stats, .stat-item, .stat-number, .stat-label, .social-links, .social-link, .newsletter, .newsletter h4, .newsletter p, .newsletter-form, .newsletter-input, .newsletter-btn as per user request */
+        
         .footer-section h3 {
             color: white;
             margin-bottom: 25px;
@@ -941,7 +705,6 @@
             font-size: 1.2rem;
             position: relative;
         }
-
         .footer-section h3::after {
             content: '';
             position: absolute;
@@ -952,16 +715,13 @@
             background: var(--gradient-primary);
             border-radius: 2px;
         }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
+        .footer-section p {
             margin-bottom: 12px;
+            color: #adb5bd;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
-
-        .footer-links a {
+        .footer-section p a {
             color: #adb5bd;
             text-decoration: none;
             transition: var(--transition);
@@ -970,175 +730,39 @@
             gap: 10px;
             padding: 5px 0;
         }
-
-        .footer-links a:hover {
+        .footer-section p a:hover {
             color: var(--primary-color);
             transform: translateX(5px);
         }
-
-        .footer-links a i {
-            width: 16px;
-            opacity: 0.7;
-        }
-
-        .contact-info {
-            list-style: none;
-        }
-
-        .contact-info li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        .footer-section p i {
             font-size: 1rem;
-        }
-
-        .contact-details h4 {
-            color: white;
-            font-weight: 600;
-            margin-bottom: 3px;
-        }
-
-        .contact-details p {
-            color: #adb5bd;
-            font-size: 0.95rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #adb5bd;
-            text-decoration: none;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-
-        .social-link:hover {
-            background: var(--gradient-primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .newsletter {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .newsletter h4 {
-            color: white;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .newsletter p {
-            color: #adb5bd;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 0.95rem;
-        }
-
-        .newsletter-input::placeholder {
-            color: #adb5bd;
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .newsletter-btn {
-            padding: 12px 20px;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .newsletter-btn:hover {
-            transform: scale(1.05);
+            color: var(--primary-color); /* Icon color */
+            width: 20px; /* Align icons */
+            text-align: center;
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 30px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Centered for new structure */
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
+            text-align: center; /* Centered text */
+            padding-bottom: 20px; /* Add some bottom padding */
         }
-
         .footer-copyright {
             color: #adb5bd;
             font-size: 0.95rem;
         }
-
-        .footer-links-bottom {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-links-bottom a {
-            color: #adb5bd;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .footer-links-bottom a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Mobile Responsive */
+        /* Removed .footer-links-bottom as per user request */
         @media (max-width: 1024px) {
-            .footer-main {
-                grid-template-columns: 2fr 1fr 1fr 1fr;
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for smaller screens */
                 gap: 40px;
             }
         }
-
         @media (max-width: 768px) {
             .nav-menu {
                 position: fixed;
@@ -1153,78 +777,62 @@
                 transition: var(--transition);
                 box-shadow: var(--shadow);
             }
-
             .nav-menu.active {
                 left: 0;
             }
-
             .mobile-menu-toggle {
                 display: block;
             }
-
             .product-section {
                 grid-template-columns: 1fr;
                 gap: 30px;
                 padding: 20px;
             }
-
             .product-details {
                 grid-template-columns: 1fr;
                 gap: 20px;
                 padding: 20px;
             }
-
-            .contact-sidebar {
-                display: none;
-            }
-
+            /* Removed .contact-sidebar as per user request */
             .tab-content,
             .specs-table-container,
             .product-images-grid,
             .similar-products-grid {
                 padding: 20px;
             }
-
             .similar-products-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 20px;
             }
-
-            .footer-main {
-                grid-template-columns: 1fr;
+            .footer-content {
+                grid-template-columns: 1fr; /* Stack columns on small screens */
                 gap: 40px;
-                text-align: center;
+                text-align: center; /* Center text for stacked sections */
             }
-
-            .footer-stats {
-                grid-template-columns: repeat(2, 1fr);
+            .footer-section h3::after {
+                left: 50%; /* Center underline for stacked sections */
+                transform: translateX(-50%);
             }
-
+            .footer-section p a {
+                justify-content: center; /* Center links for stacked sections */
+            }
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
             }
         }
-
         @media (max-width: 480px) {
             .similar-products-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-
             .nav-container,
             .breadcrumb-container,
             .footer-content {
                 padding-left: 20px;
                 padding-right: 20px;
             }
-
-            .footer-stats {
-                grid-template-columns: 1fr;
-            }
         }
-
-        /* Image Modal */
         .image-modal {
             display: none;
             position: fixed;
@@ -1235,7 +843,6 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
         }
-
         .modal-content {
             position: absolute;
             top: 50%;
@@ -1243,14 +850,13 @@
             transform: translate(-50%, -50%);
             max-width: 90%;
             max-height: 90%;
+            z-index: 2001; /* Ensure it's above the overlay */
         }
-
         .modal-image {
             width: 100%;
             height: auto;
             border-radius: 8px;
         }
-
         .modal-close {
             position: absolute;
             top: 20px;
@@ -1261,25 +867,28 @@
             cursor: pointer;
             transition: var(--transition);
         }
-
         .modal-close:hover {
             color: var(--primary-color);
+        }
+        .contact-option {
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            pointer-events: auto; /* Ensure pointer events are enabled */
         }
     </style>
 </head>
 <body>
-    <!-- Original Navbar from Version 7 -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="/" class="logo">
                 <i class="fas fa-industry"></i>
                 Aspire Pack Automation
-            </a>
-            
+            </a>                        
             <ul class="nav-menu" id="navMenu">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/products" class="nav-link">Products</a></li>
-                <li><a href="/categories" class="nav-link">Categories</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link">Services & Support</a></li>
                 <li><a href="/news" class="nav-link">News</a></li>
                 <li><a href="/contact" class="nav-link">Contact</a></li>
@@ -1287,7 +896,6 @@
                     <li><a href="/admin" class="nav-link">Admin Dashboard</a></li>
                 <% } %>
             </ul>
-
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle">
                     <i class="fas fa-moon" id="themeIcon"></i>
@@ -1298,22 +906,17 @@
                     <a href="/login" class="btn-primary">Login</a>
                 <% } %>
             </div>
-
             <button class="mobile-menu-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
-
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
             <h1>Product Center</h1>
             <p>To create a world-renowned leading enterprise in the international packaging machinery field.</p>
         </div>
     </section>
-
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="breadcrumb-container">
             <nav class="breadcrumb-nav">
@@ -1329,57 +932,33 @@
             </nav>
         </div>
     </div>
-
-    <!-- Contact Sidebar -->
-    <div class="contact-sidebar">
-        <a href="tel:+919999999999" class="contact-item contact-phone" title="Phone">
-            <i class="fas fa-phone"></i>
-        </a>
-        <a href="tel:+919999999999" class="contact-item contact-mobile" title="Mobile">
-            <i class="fas fa-mobile-alt"></i>
-        </a>
-        <a href="https://wa.me/919999999999" class="contact-item contact-whatsapp" title="WhatsApp" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="#" class="contact-item contact-wechat" title="WeChat">
-            <i class="fab fa-weixin"></i>
-        </a>
-        <a href="mailto:sales@aspirepackautomation.com" class="contact-item contact-email" title="Email">
-            <i class="fas fa-envelope"></i>
-        </a>
-    </div>
-
-    <!-- Main Content -->
+     <!-- Removed contact-sidebar as per user request  -->
     <main class="main-content">
-        <!-- Product Section -->
         <div class="product-section">
-            <!-- Product Image -->
             <div class="product-image-section">
                 <div class="main-image-container">
-                    <img src="<%= product.coverImage || '/placeholder.svg?height=400&width=500&text=' + encodeURIComponent(product.productName) %>" 
-                         alt="<%= product.productName %>" 
-                         id="mainImage" 
-                         class="main-product-image"
+                    <img src="<%= product.coverImage || '/placeholder.svg?height=400&width=500&text=' + encodeURIComponent(product.productName) %>"
+                          alt="<%= product.productName %>"
+                          id="mainImage"
+                          class="main-product-image"
                          onclick="openImageModal(this.src)">
                 </div>
-                
+                                
                 <% if (product.productImages && product.productImages.length > 0) { %>
                 <div class="thumbnail-container">
-                    <img src="<%= product.coverImage %>" 
-                         class="thumbnail-image active" 
-                         onclick="changeMainImage(this.src, this)"
+                    <img src="<%= product.coverImage %>"
+                          class="thumbnail-image active"
+                          onclick="changeMainImage(this.src, this)"
                          alt="Main view">
                     <% product.productImages.slice(0, 4).forEach((img, index) => { %>
-                        <img src="<%= img %>" 
-                             class="thumbnail-image" 
-                             onclick="changeMainImage(this.src, this)"
+                        <img src="<%= img %>"
+                              class="thumbnail-image"
+                              onclick="changeMainImage(this.src, this)"
                              alt="View <%= index + 2 %>">
                     <% }) %>
                 </div>
                 <% } %>
             </div>
-
-            <!-- Product Info -->
             <div class="product-info-section">
                 <h1 class="product-title"><%= product.productName %></h1>
                 <div class="product-model">
@@ -1388,34 +967,30 @@
                         <i class="fas fa-qrcode"></i>
                     </div>
                 </div>
-
-                <div class="quantity-section">
-                    <div class="quantity-label">Quantity:</div>
-                    <div class="quantity-controls">
-                        <button class="quantity-btn" onclick="decreaseQuantity()">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" class="quantity-input" value="1" min="1" id="quantityInput">
-                        <button class="quantity-btn" onclick="increaseQuantity()">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
+                <div class="product-short-description">
+                    <p><%= product.shortDescription || 'This advanced packaging machine is designed for high efficiency and reliability in various industrial applications.' %></p>
                 </div>
-
                 <div class="action-buttons">
-                    <button class="btn-inquire" onclick="openInquiryModal('<%= product.productName %>', '<%= product.productModelNumber %>')">
+                    <!-- <button class="btn-inquire" onclick="openInquiryModal('<%= product.productName %>', '<%= product.productModelNumber %>')">
                         <i class="fas fa-paper-plane"></i>
                         Inquire
-                    </button>
-                    <button class="btn-basket" onclick="addToBasket()">
-                        <i class="fas fa-shopping-basket"></i>
-                        Add to Basket
-                    </button>
+                    </button> -->
+                    <%
+                        const whatsappMessage = encodeURIComponent(`Hi, I'm interested in ${product.productName} (Model: ${product.productModelNumber || 'N/A'}). Please provide detailed specifications and pricing.`);
+                        const emailSubject = encodeURIComponent(`Inquiry for ${product.productName}`);
+                        const emailBody = encodeURIComponent(`Hi, I'm interested in ${product.productName} (Model: ${product.productModelNumber || 'N/A'}). Please provide detailed specifications and pricing.`);
+                    %>
+                    <a href="https://wa.me/917424860111?text=<%= whatsappMessage %>" class="btn-whatsapp-direct" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp Now
+                    </a>
+                    <a href="mailto:aspirepackautomation@gmail.com?subject=<%= emailSubject %>&body=<%= emailBody %>" class="btn-email-direct">
+                        <i class="fas fa-envelope"></i>
+                        Email Us
+                    </a>
                 </div>
             </div>
         </div>
-
-        <!-- Product Details -->
         <div class="product-details">
             <div class="detail-item">
                 <div class="detail-label">Model:</div>
@@ -1436,8 +1011,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Social Share -->
         <div class="social-share">
             <div class="share-label">Share to:</div>
             <div class="share-buttons">
@@ -1458,20 +1031,18 @@
                 </a>
             </div>
         </div>
-
-        <!-- Tabs Section -->
         <div class="tabs-section">
             <div class="tab-navigation">
                 <button class="tab-btn active" onclick="showTab('description')">Description</button>
-                <button class="tab-btn" onclick="showTab('specifications')">Product Detail</button>
+                <!-- <button class="tab-btn" onclick="showTab('specifications')">Product Detail</button> -->
             </div>
-            
+                        
             <div class="tab-content">
                 <div id="description" class="tab-panel active">
                     <div class="description-content">
                         <h3>Product Description</h3>
                         <p><%= product.productDescription || 'This advanced packaging machine represents the pinnacle of industrial automation technology. Engineered for maximum efficiency and reliability, it delivers consistent performance in demanding production environments. The machine features state-of-the-art control systems, precision engineering, and user-friendly operation interfaces that make it ideal for modern manufacturing facilities.' %></p>
-                        
+                                                
                         <% if (product.productFeatures && product.productFeatures.length > 0) { %>
                         <h4 style="margin-top: 30px; margin-bottom: 15px;">Key Features:</h4>
                         <ul style="margin-left: 20px;">
@@ -1480,14 +1051,13 @@
                             <% }) %>
                         </ul>
                         <% } %>
-
                         <% if (product.productApplications && product.productApplications.length > 0) { %>
                         <h4 style="margin-top: 30px; margin-bottom: 15px;">Applications:</h4>
                         <p><%= product.productApplications.join(', ') %></p>
                         <% } %>
                     </div>
                 </div>
-                
+                                
                 <div id="specifications" class="tab-panel">
                     <h3>Technical Specifications</h3>
                     <% if (product.productParameters && product.productParameters.length > 0) { %>
@@ -1551,8 +1121,6 @@
             </div>
         </div>
     </main>
-
-    <!-- Product Images Gallery Section -->
     <% if (product.productImages && product.productImages.length > 0) { %>
     <section class="section">
         <div class="section-header">
@@ -1574,8 +1142,6 @@
         </div>
     </section>
     <% } %>
-
-    <!-- Technical Parameters Section -->
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">
@@ -1664,8 +1230,6 @@
             <% } %>
         </div>
     </section>
-
-    <!-- Similar Products Section -->
     <% if (typeof similarProducts !== 'undefined' && similarProducts && similarProducts.length > 0) { %>
     <section class="section">
         <div class="section-header">
@@ -1679,19 +1243,19 @@
             <% similarProducts.forEach(similar => { %>
                 <div class="similar-product-card">
                     <div class="similar-product-image">
-                        <img src="<%= similar.coverImage || '/placeholder.svg?height=180&width=280&text=' + encodeURIComponent(similar.productName) %>" 
-                             alt="<%= similar.productName %>" loading="lazy">
+                        <img src="<%= similar.coverImage || '/placeholder.svg?height=180&width=280&text=' + encodeURIComponent(similar.productName) %>"
+                              alt="<%= similar.productName %>" loading="lazy">
                     </div>
                     <div class="similar-product-info">
                         <h4 class="similar-product-name"><%= similar.productName %></h4>
                         <p class="similar-product-model">Model: <%= similar.productModelNumber || 'N/A' %></p>
-                        
+                                                
                         <div class="similar-product-features">
                             <span class="feature-tag">Automated</span>
                             <span class="feature-tag">High Speed</span>
                             <span class="feature-tag">Efficient</span>
                         </div>
-                        
+                                                
                         <div class="similar-product-actions">
                             <a href="/product/<%= similar.slug || similar.productName.toLowerCase().replace(/\s+/g, '-') %>" class="btn-view-details">
                                 <i class="fas fa-eye"></i>
@@ -1708,139 +1272,50 @@
         </div>
     </section>
     <% } %>
-
-    <!-- Enhanced Footer -->
     <footer class="footer">
-        <div class="footer-wave"></div>
         <div class="footer-content">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <i class="fas fa-industry"></i>
-                        <span>Aspire Pack Automation</span>
-                    </div>
-                    <p class="footer-description">
-                        Leading manufacturer and supplier of advanced packaging machines and automation solutions. We specialize in box packing machines, filling systems, sealing equipment, and complete production line automation for industries worldwide.
-                    </p>
-                    <div class="footer-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Machines Sold</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Countries Served</span>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Machine Categories</h3>
-                    <ul class="footer-links">
-                        <li><a href="/category/box-packing"><i class="fas fa-box"></i>Box Packing Machines</a></li>
-                        <li><a href="/category/filling"><i class="fas fa-fill-drip"></i>Filling Machines</a></li>
-                        <li><a href="/category/sealing"><i class="fas fa-lock"></i>Sealing Machines</a></li>
-                        <li><a href="/category/wrapping"><i class="fas fa-gift"></i>Wrapping Machines</a></li>
-                        <li><a href="/category/labeling"><i class="fas fa-tags"></i>Labeling Machines</a></li>
-                        <li><a href="/category/conveyor"><i class="fas fa-conveyor-belt"></i>Conveyor Systems</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="/services/installation"><i class="fas fa-tools"></i>Installation & Setup</a></li>
-                        <li><a href="/services/maintenance"><i class="fas fa-wrench"></i>Maintenance</a></li>
-                        <li><a href="/services/training"><i class="fas fa-graduation-cap"></i>Operator Training</a></li>
-                        <li><a href="/services/support"><i class="fas fa-headset"></i>Technical Support</a></li>
-                        <li><a href="/services/spare-parts"><i class="fas fa-cog"></i>Spare Parts</a></li>
-                        <li><a href="/services/customization"><i class="fas fa-drafting-compass"></i>Custom Solutions</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="/about"><i class="fas fa-info-circle"></i>About Us</a></li>
-                        <li><a href="/quality"><i class="fas fa-certificate"></i>Quality Standards</a></li>
-                        <li><a href="/careers"><i class="fas fa-briefcase"></i>Careers</a></li>
-                        <li><a href="/news"><i class="fas fa-newspaper"></i>News & Updates</a></li>
-                        <li><a href="/case-studies"><i class="fas fa-chart-line"></i>Case Studies</a></li>
-                        <li><a href="/contact"><i class="fas fa-envelope"></i>Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <ul class="contact-info">
-                        <li>
-                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact-details">
-                                <h4>Head Office</h4>
-                                <p>Industrial Area, Sector 25<br>Gurgaon, Haryana 122001, India</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <div class="contact-details">
-                                <h4>Phone</h4>
-                                <p>+91 99999 99999<br>+91 88888 88888</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p>sales@aspirepackautomation.com<br>support@aspirepackautomation.com</p>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="newsletter">
-                        <h4>Stay Updated</h4>
-                        <p>Get latest updates on new machines and industry insights</p>
-                        <form class="newsletter-form">
-                            <input type="email" class="newsletter-input" placeholder="Enter your email">
-                            <button type="submit" class="newsletter-btn">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
+            <div class="footer-section">
+                <h3>Aspire Packaging</h3>
+                <p>Leading manufacturer and supplier of industrial packaging machinery with over 15 years of industry experience and innovation.</p>
+                <p>Trusted by thousands of businesses worldwide for reliable, efficient, and cutting-edge packaging solutions.</p>
             </div>
-
-            <div class="footer-bottom">
-                <div class="footer-copyright">
-                    <p>&copy; <%= new Date().getFullYear() %> Aspire Pack Automation. All rights reserved. | Designed for Excellence in Packaging Automation</p>
-                </div>
-                <div class="footer-links-bottom">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Service</a>
-                    <a href="/warranty">Warranty</a>
-                    <a href="/sitemap">Sitemap</a>
-                </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="/">Home</a></p>
+                <p><a href="/products">Products</a></p>
+                <p><a href="/categories">Categories</a></p>
+                <p><a href="/services">Services & Support</a></p>
+                <p><a href="/about">About Us</a></p>
+                <p><a href="/contact">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Product Categories</h3>
+                <p><a href="/category/vacuum-sealing">Vacuum Sealing</a></p>
+                <p><a href="/category/box-packing">Box Packing</a></p>
+                <p><a href="/category/wrapping-machines">Wrapping Machines</a></p>
+                <p><a href="/category/filling-machines">Filling Machines</a></p>
+                <p><a href="/category/labeling-systems">Labeling Systems</a></p>
+                <p><a href="/category/conveyor-systems">Conveyor Systems</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-phone"></i> +91 99999 99999</p>
+                <p><i class="fas fa-envelope"></i> info@aspirepackaging.com</p>
+                <p><i class="fas fa-envelope"></i> sales@aspirepackaging.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Industrial Area, Sector 62, Noida, UP, India</p>
+                <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; <%= new Date().getFullYear() %> Aspire Packaging. All rights reserved. | Engineered for Excellence | ISO 9001:2015 Certified</p>
+        </div>
     </footer>
-
-    <!-- Image Modal -->
     <div id="imageModal" class="image-modal">
         <span class="modal-close" onclick="closeImageModal()">&times;</span>
         <div class="modal-content">
             <img id="modalImage" class="modal-image" alt="Full size view">
         </div>
     </div>
-
-    <!-- Inquiry Modal -->
     <div class="modal" id="inquiryModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2000;">
         <div class="modal-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 8px; max-width: 500px; width: 90%;">
             <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
@@ -1874,53 +1349,39 @@
             </div>
         </div>
     </div>
-
-    <!-- Scripts -->
     <script>
-        // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
-
         const savedTheme = localStorage.getItem('theme') || 'light';
         body.setAttribute('data-theme', savedTheme);
         updateThemeIcon(savedTheme);
-
         themeToggle.addEventListener('click', function() {
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
+                        
             body.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeIcon(newTheme);
         });
-
         function updateThemeIcon(theme) {
             themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
-
-        // Mobile Menu Toggle
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
-
         mobileToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             const icon = mobileToggle.querySelector('i');
             icon.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
         });
-
-        // Image Gallery Functions
         function changeMainImage(src, thumbnail) {
             document.getElementById('mainImage').src = src;
-            
-            // Update active thumbnail
+                        
             document.querySelectorAll('.thumbnail-image').forEach(thumb => {
                 thumb.classList.remove('active');
             });
             thumbnail.classList.add('active');
         }
-
-        // Image Modal Functions
         function openImageModal(src) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
@@ -1928,139 +1389,91 @@
             modalImage.src = src;
             document.body.style.overflow = 'hidden';
         }
-
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
-        // Quantity Functions
-        function increaseQuantity() {
-            const input = document.getElementById('quantityInput');
-            input.value = parseInt(input.value) + 1;
-        }
-
-        function decreaseQuantity() {
-            const input = document.getElementById('quantityInput');
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-            }
-        }
-
-        // Tab Functions
         function showTab(tabName) {
-            // Hide all tab panels
             document.querySelectorAll('.tab-panel').forEach(panel => {
                 panel.classList.remove('active');
             });
-            
-            // Remove active class from all tab buttons
+                        
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
-            // Show selected tab panel
+                        
             document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked button
+                        
             event.target.classList.add('active');
         }
-
-        // Inquiry Modal Functions
         function openInquiryModal(productName, productModel) {
             const modal = document.getElementById('inquiryModal');
             const modalProductName = document.getElementById('modalProductName');
             const modalProductModel = document.getElementById('modalProductModel');
             const whatsappLink = document.getElementById('whatsappLink');
             const emailLink = document.getElementById('emailLink');
-
             modalProductName.textContent = productName;
             modalProductModel.textContent = productModel || 'N/A';
-
             const message = `Hi, I'm interested in ${productName} (Model: ${productModel || 'N/A'}). Please provide detailed specifications and pricing.`;
             const encodedMessage = encodeURIComponent(message);
-            
-            whatsappLink.href = `https://wa.me/919999999999?text=${encodedMessage}`;
-            emailLink.href = `mailto:sales@aspirepackautomation.com?subject=Inquiry for ${productName}&body=${encodedMessage}`;
-
+                        
+            whatsappLink.href = `https://wa.me/917424860111?text=${encodedMessage}`;
+            emailLink.href = `mailto:aspirepackautomation@gmail.com?subject=Inquiry for ${productName}&body=${encodedMessage}`;
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal() {
             const modal = document.getElementById('inquiryModal');
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
-        // Basket Function
-        function addToBasket() {
-            const quantity = document.getElementById('quantityInput').value;
-            alert(`Added ${quantity} item(s) to basket!`);
-        }
-
-        // Social Share Functions
         function shareToFacebook() {
             const url = encodeURIComponent(window.location.href);
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
         }
-
         function shareToTwitter() {
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent('<%= product.productName %>');
             window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
         }
-
         function shareToLinkedIn() {
             const url = encodeURIComponent(window.location.href);
             window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
         }
-
         function shareToWhatsApp() {
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent('<%= product.productName %> - Check out this packaging machine');
             window.open(`https://wa.me/?text=${text} ${url}`, '_blank');
         }
-
         function shareByEmail() {
             const subject = encodeURIComponent('<%= product.productName %>');
             const body = encodeURIComponent(`Check out this packaging machine: ${window.location.href}`);
             window.location.href = `mailto:?subject=${subject}&body=${body}`;
         }
-
-        // Close modal when clicking outside
         document.getElementById('imageModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeImageModal();
             }
         });
-
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeImageModal();
                 closeModal();
             }
         });
-
-        // Image loading with error handling
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('error', function() {
                 const altText = this.alt || 'Product Image';
                 this.src = `/placeholder.svg?height=400&width=500&text=${encodeURIComponent(altText)}`;
             });
         });
-
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 mobileToggle.querySelector('i').className = 'fas fa-bars';
             });
         });
-
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

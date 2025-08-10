@@ -4,143 +4,597 @@
   <meta charset="UTF-8" />
   <title>Contact Us | Aspire Packaging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
+    :root {
+        --primary: #8b0000;
+        --primary-light: #a31a1a;
+        --primary-dark: #660000;
+        --text-primary: #2c3e50;
+        --text-secondary: #6c757d;
+        --text-light: #ffffff;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-dark: #1a1a1a;
+        --border: #dee2e6;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+        --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
+        --success: #28a745;
+        --warning: #ffc107;
+        --info: #17a2b8;
+        --transition: all 0.3s ease;
+        --primary-hover: #7a0000;
+    }
+    [data-theme="dark"] {
+        --text-primary: #ffffff;
+        --text-secondary: #b8bcc8;
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --border: #404040;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: #f9f9f9;
-      color: #333;
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
 
-    header {
-      background-color: #8b0000;
-      color: #fff;
-      padding: 2rem 1rem;
+    /* Navbar styles (copied from index.ejs) */
+    .navbar {
+        background: var(--bg-primary);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+        box-shadow: var(--shadow);
+    }
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-primary);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+        align-items: center;
+    }
+    .nav-link {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+        color: var(--primary);
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+        width: 100%;
+    }
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .theme-toggle {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+        background: var(--primary);
+        color: white;
+    }
+    .btn-primary {
+        background: var(--gradient-primary);
+        color: var(--text-light);
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+    .mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-primary);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(139, 0, 0, 0.7)), 
+                  url('/placeholder.svg?height=400&width=1920') center/cover;
+      color: var(--text-light);
+      padding: 5rem 1rem; /* Reduced padding for compactness */
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-
-    header h1 {
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .hero-section h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 3rem; /* Slightly smaller font */
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero-section p {
+      font-size: 1.1rem; /* Slightly smaller font */
+      max-width: 700px;
+      margin: 0.8rem auto 0;
+      opacity: 0.95;
     }
 
+    /* Main Content Container */
     .container {
-      max-width: 1200px;
+      max-width: 1100px; /* Slightly smaller max-width */
       margin: 3rem auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem; /* Reduced padding */
       display: flex;
       flex-wrap: wrap;
-      gap: 3rem;
+      gap: 2.5rem; /* Reduced gap */
+      flex-grow: 1;
     }
 
+    /* Contact Info & Form Cards */
     .contact-info, .contact-form {
-      flex: 1 1 400px;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      flex: 1 1 400px; /* Adjusted flex-basis for compactness */
+      background: var(--bg-primary);
+      padding: 2rem; /* Reduced padding */
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--border);
+    }
+    .contact-info:hover, .contact-form:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
     }
 
     .contact-info h2, .contact-form h2 {
-      color: #8b0000;
-      margin-bottom: 1rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem; /* Reduced margin */
+      font-size: 1.8rem; /* Slightly smaller font */
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.4rem;
+      display: inline-block;
     }
 
     .contact-info p {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem; /* Reduced margin */
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.95rem; /* Slightly smaller font */
+      color: var(--text-secondary);
+    }
+    .contact-info p i {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-top: 0.1rem;
     }
 
+    /* Map Integration */
+    .map-container {
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 250px; /* Fixed height for the map */
+      border: 0;
+    }
+
+    /* Contact Form Styling */
     .contact-form form {
       display: flex;
       flex-direction: column;
     }
-
     .contact-form label {
-      margin-top: 1rem;
-      font-weight: bold;
+      margin-top: 1rem; /* Reduced margin */
+      font-weight: 600; /* Slightly bolder */
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
     }
-
     .contact-form input,
     .contact-form textarea {
-      padding: 0.6rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
+      padding: 0.7rem 0.9rem; /* Reduced padding */
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+      background: var(--bg-secondary); /* Light background for inputs */
+      color: var(--text-primary);
     }
-
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.2);
+    }
     .contact-form textarea {
       resize: vertical;
-      height: 150px;
+      min-height: 100px; /* Reduced min-height */
+      max-height: 250px;
     }
-
     .contact-form button {
-      margin-top: 1.5rem;
-      background-color: #8b0000;
-      color: #fff;
+      margin-top: 1.8rem; /* Reduced margin */
+      background-color: var(--primary);
+      color: var(--text-light);
       border: none;
-      padding: 0.7rem 1rem;
+      padding: 0.9rem 1.2rem; /* Reduced padding */
       font-size: 1rem;
-      border-radius: 5px;
+      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      letter-spacing: 0.5px;
     }
-
     .contact-form button:hover {
-      background-color: #a30000;
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+    .contact-form button:active {
+      transform: translateY(0);
     }
 
-    footer {
-      background: #222;
-      color: #aaa;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
+    /* Footer Styling (copied from index.ejs) */
+    .footer {
+        background: var(--bg-dark);
+        color: var(--text-light);
+        padding: 4rem 2rem 2rem;
+        margin-top: auto; /* Pushes footer to the bottom */
+    }
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+    }
+    .footer-section h3 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+    }
+    .footer-section p,
+    .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        line-height: 1.8;
+        transition: color 0.3s ease;
+    }
+    .footer-section a:hover {
+        color: var(--primary);
+    }
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #333;
+        color: #999;
+        margin-top: 2rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--bg-primary);
+            flex-direction: column;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .nav-menu.active {
+            display: flex;
+        }
+        .mobile-toggle {
+            display: block;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+        }
+        .hero-section p {
+            font-size: 1rem;
+        }
+        .container {
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        .contact-info, .contact-form {
+            flex: 1 1 100%;
+            max-width: 500px; /* Constrain width on smaller screens */
+            padding: 1.5rem;
+        }
+        .contact-info h2, .contact-form h2 {
+            font-size: 1.6rem;
+        }
+        .contact-info p {
+            font-size: 0.9rem;
+        }
+        .map-container iframe {
+            height: 200px;
+        }
+        .footer-content {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
     }
 
     @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
+        .nav-container {
+            padding: 0 1rem;
+        }
+        .hero-section {
+            padding: 4rem 1rem;
+        }
+        .hero-section h1 {
+            font-size: 2rem;
+        }
+        .hero-section p {
+            font-size: 0.9rem;
+        }
+        .footer-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .footer-section {
+            margin-bottom: 1.5rem;
+        }
     }
   </style>
 </head>
 <body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <span>Aspire Packaging</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/products" class="nav-link">Products</a></li>
+                <li><a href="/categories" class="nav-link">Categories</a></li>
+                <li><a href="/services" class="nav-link">Services & Support</a></li>
+                <li><a href="/news" class="nav-link">News</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <% if (typeof user !== 'undefined' && user) { %>
+                    <% if (user.role === 'admin') { %>
+                        <a href="/admin/dashboard" class="btn-primary">Admin Panel</a>
+                    <% } %>
+                    <a href="/logout" class="btn-primary">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="btn-primary">Login</a>
+                <% } %>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-  <header>
-    <h1>Contact Us</h1>
-  </header>
+  <div class="hero-section">
+    <div class="hero-content">
+        <h1>Get in Touch with Aspire Packaging</h1>
+        <p>We're here to help with all your packaging machinery needs. Reach out to us for inquiries, support, or partnership opportunities.</p>
+    </div>
+  </div>
 
   <div class="container">
     <div class="contact-info">
-      <h2>Our Office</h2>
+      <h2>Our Office & Details</h2>
       <p><strong>Aspire Packaging Pvt. Ltd.</strong></p>
-      <p>Plot No. X, Industrial Area, Indore, MP</p>
-      <p>Email: contact@aspirepackaging.com</p>
-      <p>Phone: +91-98765-43210</p>
-      <p>Working Hours: Mon - Sat, 9:00 AM to 6:00 PM</p>
-    </div>
+      <p><i class="fas fa-map-marker-alt"></i> Industrial Area, Sector 62, Noida, UP, India</p>
+      <p><i class="fas fa-envelope"></i> info@aspirepackaging.com</p>
+      <p><i class="fas fa-envelope"></i> sales@aspirepackaging.com</p>
+      <p><i class="fas fa-phone"></i> +91-99999-99999</p>
+      <p><i class="fas fa-clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+      <p><i class="fas fa-globe"></i> www.aspirepackaging.com</p>
 
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0000000000005!2d77.37000000000001!3d28.613900000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a999999999%3A0x9999999999999999!2sIndustrial%20Area%2C%20Sector%2062%2C%20Noida%2C%20Uttar%20Pradesh%20201309!5e0!3m2!1sen!2sin!4v1678888888888!5m2!1sen!2sin" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Aspire Packaging Location">
+        </iframe>
+      </div>
+    </div>
     <div class="contact-form">
       <h2>Send us a message</h2>
       <form action="/contact" method="POST">
         <label for="name">Your Name</label>
-        <input type="text" name="name" id="name" required>
-
+        <input type="text" name="name" id="name" placeholder="Enter your full name" required>
         <label for="email">Your Email</label>
-        <input type="email" name="email" id="email" required>
-
+        <input type="email" name="email" id="email" placeholder="Enter your email address" required>
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" placeholder="Subject of your message" required>
         <label for="message">Message</label>
-        <textarea name="message" id="message" required></textarea>
-
+        <textarea name="message" id="message" placeholder="Type your message here..." required></textarea>
         <button type="submit">Send Message</button>
       </form>
     </div>
   </div>
 
-  <footer>
-    &copy; <%= new Date().getFullYear() %> Aspire Packaging. All rights reserved.
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Aspire Packaging</h3>
+        <p>Leading manufacturer and supplier of industrial packaging machinery with over 15 years of industry experience and innovation.</p>
+        <p>Trusted by thousands of businesses worldwide for reliable, efficient, and cutting-edge packaging solutions.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="/">Home</a></p>
+        <p><a href="/products">Products</a></p>
+        <p><a href="/categories">Categories</a></p>
+        <p><a href="/services">Services & Support</a></p>
+        <p><a href="/about">About Us</a></p>
+        <p><a href="/contact">Contact</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Product Categories</h3>
+        <p><a href="/category/vacuum-sealing">Vacuum Sealing</a></p>
+        <p><a href="/category/box-packing">Box Packing</a></p>
+        <p><a href="/category/wrapping-machines">Wrapping Machines</a></p>
+        <p><a href="/category/filling-machines">Filling Machines</a></p>
+        <p><a href="/category/labeling-systems">Labeling Systems</a></p>
+        <p><a href="/category/conveyor-systems">Conveyor Systems</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Information</h3>
+        <p><i class="fas fa-phone"></i> +91 99999 99999</p>
+        <p><i class="fas fa-envelope"></i> info@aspirepackaging.com</p>
+        <p><i class="fas fa-envelope"></i> sales@aspirepackaging.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Industrial Area, Sector 62, Noida, UP, India</p>
+        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <%= new Date().getFullYear() %> Aspire Packaging. All rights reserved. | Engineered for Excellence | ISO 9001:2015 Certified</p>
+    </div>
   </footer>
 
+  <script>
+    // Theme toggle and mobile menu logic (copied from index.ejs)
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
+
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+    themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    });
+
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    mobileToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        const icon = this.querySelector('i');
+        icon.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    navMenu.querySelectorAll('.nav-link, .btn-primary, .theme-toggle').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileToggle.querySelector('i').className = 'fas fa-bars';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+  </script>
 </body>
 </html>

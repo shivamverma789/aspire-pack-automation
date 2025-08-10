@@ -4,6 +4,7 @@ const categoryController = require('../controllers/categoryController');
 const ensureAdmin = require('../middlewares/ensureAdmin');
 const upload = require('../middlewares/upload');
 
+
 // 🟢 View all categories
 router.get('/categories', ensureAdmin, categoryController.getAllCategories);
 
@@ -20,6 +21,8 @@ router.get('/categories/edit/:id', ensureAdmin, categoryController.getEditForm);
 router.post('/categories/edit/:id', ensureAdmin, upload.single('coverImage'), categoryController.updateCategory);
 
 // 🔴 Delete category
+router.get('/categories/delete/:id', ensureAdmin, categoryController.deleteCategory);
+
 router.post('/categories/delete/:id', ensureAdmin, categoryController.deleteCategory);
 
 module.exports = router;
